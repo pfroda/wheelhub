@@ -1,0 +1,9 @@
+// {
+//   "type": "sqlite",
+//   "database": "Wheelhub",
+//   "synchronize": true,
+//   "logging": true,
+//   "entities": "../models/User.ts",
+//   "subscribers": [],
+//   "migrations": []
+// }

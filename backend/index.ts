@@ -1,11 +1,12 @@
 import express from 'express';
-import { router } from './routes/userRoutes';
+import router from './src/routes/userRoutes';
+import { initDb } from './src/db/db';
 import 'dotenv/config';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.get('/', (req: any, res: any) => {
+app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
@@ -13,6 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+(async () => {
+  await initDb();
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+})();
