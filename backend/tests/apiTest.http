@@ -1,22 +1,29 @@
 @hostname = http://localhost:8080
 
 
-### Post request should return JSON
+### Post request OK should return JSON
 POST {{hostname}}/create
 Content-Type: application/json
 
 {
-  "username": "hello",
+  "username": "user1",
   "password": "iwanttojoinwheelhub"
 }
 
+### Post request - not accepting missing fields
+POST {{hostname}}/create
+Content-Type: application/json
+
+{
+  "username": "user2",
+}
 
 ### Post request - not saving additional fields
 POST {{hostname}}/create
 Content-Type: application/json
 
 {
-  "username": "world",
+  "username": "user3",
   "password": "iwanttojoinwheelhub",
   "confirmation": "extrafield",
   "hint": "extrafield"
