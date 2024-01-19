@@ -1,9 +1,32 @@
 @hostname = http://localhost:8080
 
+
+### Post request should return JSON
 POST {{hostname}}/create
 Content-Type: application/json
 
 {
   "username": "hello",
+  "password": "iwanttojoinwheelhub"
+}
+
+
+### Post request - not saving additional fields
+POST {{hostname}}/create
+Content-Type: application/json
+
+{
+  "username": "world",
+  "password": "iwanttojoinwheelhub",
+  "confirmation": "extrafield",
+  "hint": "extrafield"
+}
+
+## Post request - not accepting invalid format
+POST {{hostname}}/create
+Content-Type: application/json
+
+{
+  "username": 1234,
   "password": "iwanttojoinwheelhub"
 }

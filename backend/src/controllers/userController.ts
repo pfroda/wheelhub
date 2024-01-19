@@ -9,7 +9,10 @@ async function createUser(req, res) {
     username: user.username,
     password: user.password,
   });
-  res.json(newUser);
+  res.json({
+    status: 200,
+    message: 'El usuario se creó correctamente',
+  });
 }
 
 export { createUser };
