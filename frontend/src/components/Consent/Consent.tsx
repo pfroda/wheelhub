@@ -1,4 +1,4 @@
-function Consent({ setConsent, consent }) {
+function Consent({ setConsent }) {
   const handleCheckboxClick = (e) => {
     // setConsent(e.target.checkbox);
     // consent = e.target.checked;

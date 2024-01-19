@@ -6,10 +6,7 @@ function Form() {
   const [index, setIndex] = useState<number>(0);
   const [consent, setConsent] = useState<boolean>(false);
 
-  const content = [
-    <Consent setConsent={setConsent} consent={consent} />,
-    <UserInfo />,
-  ];
+  const content = [<Consent setConsent={setConsent} />, <UserInfo />];
 
   // const setContent = () => {
   //   if (index >= 1 || index <= 0) return index;
@@ -18,7 +15,8 @@ function Form() {
   useEffect(() => {
     console.log(index);
     console.log('consent', consent);
-  }, [consent]);
+   
+  });
 
   const handleSubmit = () => {
     console.log('Submit!');
