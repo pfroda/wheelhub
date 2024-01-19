@@ -1,14 +1,12 @@
 import { DataSource } from 'typeorm';
 import { User } from '../models/User';
 
-const AppDataSource = new DataSource({
+export const AppDataSource = new DataSource({
   type: 'sqlite',
-  database: 'wheelhub.db',
+  database: 'src/db/wheelhub.db',
   synchronize: true,
   logging: true,
   entities: [User],
-  subscribers: [],
-  migrations: [],
 });
 
 export const initDb = async () => {
