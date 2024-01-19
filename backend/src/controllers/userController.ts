@@ -14,7 +14,7 @@ async function createUser(req, res) {
     const UserRepository = await AppDataSource.getRepository(User);
 
     // Check usuario existente
-    const existingUser = await UserRepository.find({
+    const existingUser = await UserRepository.findOne({
       where: { username: user.username },
     });
 
