@@ -29,7 +29,7 @@ async function createUser(req, res) {
       .digest('hex');
 
     // Crear usuario
-    const newUser = await UserRepository.save({
+    await UserRepository.save({
       username: user.username,
       password: hashedPassword,
     });
