@@ -1,6 +1,7 @@
 import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { useData } from '../../context/DataContext';
 
 function Form() {
   const [index, setIndex] = useState<number>(0);
@@ -15,7 +16,6 @@ function Form() {
   useEffect(() => {
     console.log(index);
     console.log('consent', consent);
-   
   });
 
   const handleSubmit = () => {

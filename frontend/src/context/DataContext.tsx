@@ -1,25 +1,36 @@
 import { createContext, useContext, useState } from 'react';
+import { postUser } from '../services/apiService';
+import { DataContextType, UserData } from '../interfaces/Interfaces';
 
-const DataContext = createContext({});
+const DataContext = createContext<DataContextType | undefined>(undefined);
 
 export const useData = () => {
   const context = useContext(DataContext);
+  if (!context) {
+    throw new Error('useData must be used within a DataProvider');
+  }
+  return context;
 };
 
-function DataProvider({ children }) {
-  const [formData, setFormData] = useState({
+function DataProvider({ children }: { children: React.ReactNode }) {
+  const [formData, setFormData] = useState<UserData>({
     consent: false,
     username: '',
     password: '',
-    passwordConfirmation: '',
+    passwordConfirm: '',
     hint: '',
   });
 
-  const updateFormData = (field, value) => {
+  const updateFormData = (field: keyof UserData, value: string) => {
     setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 
-  const postFormData = () => {};
+  const postFormData = async () => {
+    await postUser({
+      username: formData.username,
+      password: formData.password,
+    });
+  };
 
   return (
     <DataContext.Provider value={{ formData, updateFormData, postFormData }}>
@@ -27,3 +38,5 @@ function DataProvider({ children }) {
     </DataContext.Provider>
   );
 }
+
+export default DataProvider;
