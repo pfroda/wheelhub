@@ -7,7 +7,7 @@
     "esModuleInterop": true
   },
   "scripts": {
-    "dev": "nodemon index.ts",
+    "dev": "nodemon src/index.ts",
     "build": "tsc",
     "start:prod": "node dist/index.js",
     "lint": "eslint .",

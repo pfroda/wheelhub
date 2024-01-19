@@ -6,7 +6,7 @@ Instale las dependencias y ejecute el servidor
 
 ```sh
 npm i
-npm run start
+npm run dev
 ```
 
 
