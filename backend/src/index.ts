@@ -1,5 +1,6 @@
 import express from 'express';
 import router from './routes/userRoutes';
+import cors from 'cors';
 import { initDb } from './db/db';
 import 'dotenv/config';
 
@@ -9,6 +10,8 @@ const PORT = process.env.PORT || 8080;
 app.get('/', (req, res) => {
   res.send('Hello world!');
 });
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
