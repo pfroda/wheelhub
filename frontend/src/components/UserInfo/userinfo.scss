@@ -3,12 +3,42 @@
   flex-direction: column;
 }
 
-// .password-content {
-//   display: flex;
-//   flex-direction: column;
-// }
+.password-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+}
 
 .password-box {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 100%;
+}
+
+.password-input {
+  display: flex;
+  position: relative;
+
+  input {
+    flex: 1;
+    // margin-right: 5px;
+  }
+
+  img {
+    width: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    border: none;
+  }
+}
+
+.hint-content {
+  #char {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+  }
 }

@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  padding: 20px;
 }
 
 .logo {
@@ -17,16 +18,15 @@
   gap: 10px;
   input {
     appearance: none;
+    outline: none;
     width: 20px;
     height: 15px;
     border: 1px solid $step-color;
     cursor: pointer;
-    outline: none;
 
     &:checked {
-      background-color: $light-green-color; /* Set the background color to green when checked */
-
-      box-shadow: 0 0 0 2px white inset; /* Create an inner distance with box-shadow */
+      background-color: $light-green-color;
+      box-shadow: 0 0 0 2px white inset;
     }
   }
 }

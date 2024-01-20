@@ -26,45 +26,53 @@ function UserInfo() {
         <label htmlFor="username">Crea tu usuario</label>
         <input
           type="text"
-          placeholder="Wheel Hub"
+          placeholder="Introduce tu usuario"
           onChange={(e) => updateFormData('username', e.target.value)}
           value={formData.username}
         />
         <div className="password-content">
-          <label htmlFor="password">Crea tu contraseña</label>
           <div className="password-box">
-            <input
-              type={visiblePassword.password ? 'text' : 'password'}
-              placeholder="Crea tu contraseña"
-              pattern=".{8,24}"
-              onChange={(e) => updateFormData('password', e.target.value)}
-              value={formData.password}
-            />
-            <img
-              src={visiblePassword.password ? eyeClosed : eyeOpened}
-              alt=""
-              onClick={() => togglePasswordVisibility('password')}
-            />
+            <label htmlFor="password">Crea tu contraseña</label>
+            <div className="password-input">
+              <input
+                type={visiblePassword.password ? 'text' : 'password'}
+                placeholder="Crea tu contraseña"
+                minLength={8}
+                maxLength={24}
+                pattern=".{8,24}"
+                onChange={(e) => updateFormData('password', e.target.value)}
+                value={formData.password}
+              />
+              <img
+                src={visiblePassword.password ? eyeClosed : eyeOpened}
+                alt=""
+                onClick={() => togglePasswordVisibility('password')}
+              />
+            </div>
           </div>
-          <label htmlFor="passwordConfirm">Repite tu contraseña</label>
           <div className="password-box">
-            <input
-              type={visiblePassword.passwordConfirm ? 'text' : 'password'}
-              placeholder="Repite tu contraseña"
-              pattern=".{8,24}"
-              onChange={(e) =>
-                updateFormData('passwordConfirm', e.target.value)
-              }
-              value={formData.passwordConfirm}
-            />
-            <img
-              src={visiblePassword.passwordConfirm ? eyeClosed : eyeOpened}
-              alt=""
-              onClick={() => togglePasswordVisibility('passwordConfirm')}
-            />
+            <label htmlFor="passwordConfirm">Repite tu contraseña</label>
+            <div className="password-input">
+              <input
+                type={visiblePassword.passwordConfirm ? 'text' : 'password'}
+                placeholder="Repite tu contraseña"
+                minLength={8}
+                maxLength={24}
+                pattern=".{8,24}"
+                onChange={(e) =>
+                  updateFormData('passwordConfirm', e.target.value)
+                }
+                value={formData.passwordConfirm}
+              />
+              <img
+                src={visiblePassword.passwordConfirm ? eyeClosed : eyeOpened}
+                alt=""
+                onClick={() => togglePasswordVisibility('passwordConfirm')}
+              />
+            </div>
           </div>
         </div>
-        <div className="hint-content">
+        <div className="hint-content password-box">
           <p>
             También puedes crear una pista que te ayude a recordar tu contraseña
           </p>
@@ -74,9 +82,11 @@ function UserInfo() {
           <input
             type="text"
             placeholder="Introduce tu pista"
+            maxLength={60}
             onChange={(e) => updateFormData('hint', e.target.value)}
             value={formData.hint}
           />
+          <p id="char">{formData.hint.length}/60</p>
         </div>
       </div>
     </form>
