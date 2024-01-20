@@ -21,7 +21,7 @@ function DataProvider({ children }: { children: React.ReactNode }) {
     hint: '',
   });
 
-  const updateFormData = (field: keyof UserData, value: string) => {
+  const updateFormData = (field: keyof UserData, value: string | boolean) => {
     setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 

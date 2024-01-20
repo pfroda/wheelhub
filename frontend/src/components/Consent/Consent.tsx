@@ -1,10 +1,7 @@
-function Consent({ setConsent }) {
-  const handleCheckboxClick = (e) => {
-    // setConsent(e.target.checkbox);
-    // consent = e.target.checked;
-    setConsent(e.target.checked);
-    console.log('e.target', e.target.checked);
-  };
+import { useData } from '../../context/DataContext';
+
+function Consent() {
+  const { updateFormData, formData } = useData();
 
   return (
     <div className="Consent">
@@ -29,8 +26,8 @@ function Consent({ setConsent }) {
           <input
             type="checkbox"
             name="consent"
-            value="consent"
-            onChange={handleCheckboxClick}
+            checked={formData.consent}
+            onChange={(e) => updateFormData('consent', e.target.checked)}
           />
           <label htmlFor="consent">
             Confirma que es mayor de edad, y acepta el tratamiento de sus datos

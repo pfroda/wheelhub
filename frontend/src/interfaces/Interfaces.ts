@@ -1,6 +1,6 @@
 export interface DataContextType {
   formData: UserData;
-  updateFormData: (field: keyof UserData, value: string) => void;
+  updateFormData: (field: keyof UserData, value: string | boolean) => void;
   postFormData: () => Promise<void>;
 }
 

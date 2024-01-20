@@ -5,9 +5,9 @@ import { useData } from '../../context/DataContext';
 
 function Form() {
   const [index, setIndex] = useState<number>(0);
-  const [consent, setConsent] = useState<boolean>(false);
+  const { formData } = useData();
 
-  const content = [<Consent setConsent={setConsent} />, <UserInfo />];
+  const content = [<Consent />, <UserInfo />];
 
   // const setContent = () => {
   //   if (index >= 1 || index <= 0) return index;
@@ -15,7 +15,7 @@ function Form() {
 
   useEffect(() => {
     console.log(index);
-    console.log('consent', consent);
+    console.log('THIS IS FORM DATA', formData);
   });
 
   const handleSubmit = () => {
@@ -35,7 +35,7 @@ function Form() {
         )}
 
         <button
-          disabled={!consent}
+          disabled={!formData.consent}
           type="button"
           onClick={() => {
             if (index < 1) {
