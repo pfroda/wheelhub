@@ -1,24 +1,33 @@
 import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
+import Confirmation from '../Confirmation/Confirmation';
 import { useEffect, useState } from 'react';
 import { useData } from '../../context/DataContext';
 import FadeLoader from 'react-spinners/FadeLoader';
 
 function Form() {
-  const [index, setIndex] = useState<number>(0);
-  const { formData, postFormData } = useData();
+  const content = [<Consent />, <UserInfo />, <Confirmation />];
+  const [contentIndex, setContentIndex] = useState<number>(0);
 
-  const content = [<Consent />, <UserInfo />];
+  const { formData, postFormData, resetFormData } = useData();
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(index);
+    console.log(contentIndex);
     console.log('THIS IS FORM DATA', formData);
   });
 
   const handleSubmit = async () => {
     if (formData.password !== formData.passwordConfirm) {
       console.log("passwords don't match");
+      return;
+    }
+
+    if (!formData.password) {
+      return;
+    }
+
+    if (!formData.username) {
       return;
     }
 
@@ -31,18 +40,23 @@ function Form() {
       console.log('Error submitting data', err);
     } finally {
       setSubmitting(false);
+      resetFormData();
+      setContentIndex(contentIndex + 1);
     }
   };
 
   return (
     <div>
       <div className="progress"></div>
-      <div className="title">Test frontend Wheel Hub</div>
-      <div className="form-content">{content[index]}</div>
+
+      <div className="form-content">{content[contentIndex]}</div>
       <div className="form-buttons">
         <div className="back-button">
-          {index > 0 && (
-            <button type="button" onClick={() => setIndex(index - 1)}>
+          {contentIndex > 0 && (
+            <button
+              type="button"
+              onClick={() => setContentIndex(contentIndex - 1)}
+            >
               Atrás
             </button>
           )}
@@ -50,11 +64,11 @@ function Form() {
 
         <div className="forward-button">
           <button
-            disabled={!formData.consent}
+            disabled={!formData.consent || submitting}
             type="button"
             onClick={() => {
-              if (index < 1) {
-                setIndex(index + 1);
+              if (contentIndex < 1) {
+                setContentIndex(contentIndex + 1);
               } else {
                 handleSubmit();
               }

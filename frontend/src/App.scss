@@ -1,26 +1,47 @@
-@import "styles/base";
+@import 'styles/base';
 
 .app {
-  .app-content{
-    margin: 25px;
-  }
-  p{
-    color: $text-color;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  h4{
-    color: $dark-green-color;
-    font-weight: 700;
-  }
-  img {
-    max-width: 800px;
-    border: 1px solid $dark-green-color;
-    margin-bottom: 15px;
-  }
-  .app-header-logo{
-    max-height: 80px;
-    border: none;
-  }
+  margin: 25px;
+  max-width: 600px;
+  background-color: rgb(249, 249, 160);
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 10px;
+}
+p {
+  color: $text-color;
+  font-size: 15px;
+  font-weight: 500;
+}
+h4 {
+  color: $dark-green-color;
+  font-weight: 700;
+}
+img {
+  max-width: 800px;
+  border: 1px solid $dark-green-color;
+  margin-bottom: 15px;
+}
 
+label {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+input {
+  height: 20px;
+  // border-radius: 5px;
+}
+
+button {
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: $green-color;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
 }

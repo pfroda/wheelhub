@@ -1,0 +1,13 @@
+.Title {
+  h2 {
+    color: $black;
+  }
+
+  h2::after {
+    content: '';
+    display: block;
+    width: 32px;
+    padding-top: 3px;
+    border-bottom: 2px solid $light-green-color;
+  }
+}

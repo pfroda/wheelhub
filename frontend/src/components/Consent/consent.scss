@@ -1,0 +1,37 @@
+.form-logo {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  max-height: 150px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.form-checkbox {
+  display: flex;
+  gap: 10px;
+  input {
+    appearance: none;
+    width: 20px;
+    height: 15px;
+    border: 1px solid $step-color;
+    cursor: pointer;
+    outline: none;
+
+    &:checked {
+      background-color: $light-green-color; /* Set the background color to green when checked */
+
+      box-shadow: 0 0 0 2px white inset; /* Create an inner distance with box-shadow */
+    }
+  }
+}
+
+#consent-label {
+  font-weight: 400;
+  color: $text-color;
+}

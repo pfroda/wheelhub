@@ -1,8 +1,9 @@
+import './title.scss';
 
 function Title() {
   return (
     <div className="Title">
-      <h1>Test Frontend Wheel Hub</h1>
+      <h2>Test Frontend Wheel Hub</h2>
     </div>
   );
 }

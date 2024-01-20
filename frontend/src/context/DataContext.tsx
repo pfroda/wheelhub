@@ -25,6 +25,16 @@ function DataProvider({ children }: { children: React.ReactNode }) {
     setFormData((prevData) => ({ ...prevData, [field]: value }));
   };
 
+  const resetFormData = () => {
+    setFormData({
+      consent: false,
+      username: '',
+      password: '',
+      passwordConfirm: '',
+      hint: '',
+    });
+  };
+
   const postFormData = async () => {
     await postUser({
       username: formData.username,
@@ -33,7 +43,9 @@ function DataProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <DataContext.Provider value={{ formData, updateFormData, postFormData }}>
+    <DataContext.Provider
+      value={{ formData, updateFormData, postFormData, resetFormData }}
+    >
       {children}
     </DataContext.Provider>
   );

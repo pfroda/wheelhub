@@ -1,4 +1,6 @@
 import { useData } from '../../context/DataContext';
+import logo from '../../assets/img/Logotipo-Vertical-Verde-Alta.png';
+import './consent.scss';
 
 function Consent() {
   const { updateFormData, formData } = useData();
@@ -6,7 +8,7 @@ function Consent() {
   return (
     <div className="Consent">
       <div className="form-logo">
-        <img src="" alt="wheelhub-logo" />
+        <img src={logo} alt="wheelhub-logo" className="logo" />
       </div>
       <div className="form-instructions">
         <h4>¿Qué deberá realizar?</h4>
@@ -29,7 +31,7 @@ function Consent() {
             checked={formData.consent}
             onChange={(e) => updateFormData('consent', e.target.checked)}
           />
-          <label htmlFor="consent">
+          <label htmlFor="consent" id="consent-label">
             Confirma que es mayor de edad, y acepta el tratamiento de sus datos
             según la política de protección de datos vigente
           </label>
