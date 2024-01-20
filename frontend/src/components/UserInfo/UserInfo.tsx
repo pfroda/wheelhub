@@ -1,5 +1,6 @@
 import { useData } from '../../context/DataContext';
 import { useState } from 'react';
+import PasswordStrengthBar from 'react-password-strength-bar';
 import './userinfo.scss';
 import eyeOpened from '../../assets/icons/icon_eye.svg';
 import eyeClosed from '../../assets/icons/icon_eyeclosed.svg';
@@ -39,14 +40,22 @@ function UserInfo() {
                 placeholder="Crea tu contraseña"
                 minLength={8}
                 maxLength={24}
-                pattern=".{8,24}"
+                pattern="(?=.*\d)(?=.*[A-Z]).{8,24}"
                 onChange={(e) => updateFormData('password', e.target.value)}
                 value={formData.password}
               />
+
               <img
                 src={visiblePassword.password ? eyeClosed : eyeOpened}
                 alt=""
                 onClick={() => togglePasswordVisibility('password')}
+              />
+            </div>
+            <div className="password-strength">
+              <PasswordStrengthBar
+                password={formData.password}
+                shortScoreWord={['']}
+                scoreWords={['']}
               />
             </div>
           </div>
@@ -58,7 +67,7 @@ function UserInfo() {
                 placeholder="Repite tu contraseña"
                 minLength={8}
                 maxLength={24}
-                pattern=".{8,24}"
+                pattern="(?=.*\d)(?=.*[A-Z]).{8,24}"
                 onChange={(e) =>
                   updateFormData('passwordConfirm', e.target.value)
                 }
@@ -70,11 +79,19 @@ function UserInfo() {
                 onClick={() => togglePasswordVisibility('passwordConfirm')}
               />
             </div>
+            <div className="password-strength">
+              <PasswordStrengthBar
+                password={formData.passwordConfirm}
+                shortScoreWord={['']}
+                scoreWords={['']}
+              />
+            </div>
           </div>
         </div>
         <div className="hint-content password-box">
           <p>
-            También puedes crear una pista que te ayude a recordar tu contraseña
+            También puedes crear una pista que te ayude a recordar tu
+            contraseña.
           </p>
           <label htmlFor="hint">
             Crea tu pista para recordar tu contraseña (opcional)

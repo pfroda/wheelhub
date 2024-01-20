@@ -10,7 +10,8 @@
   gap: 40px;
 }
 
-.password-box {
+.password-box,
+.password-strength {
   display: flex;
   flex-direction: column;
   width: 100%;
