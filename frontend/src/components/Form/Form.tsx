@@ -2,23 +2,23 @@ import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
 import Confirmation from '../Confirmation/Confirmation';
 import Button from '../Button/button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './form.scss';
 
-function Form() {
+interface FormProps {
+  contentIndex: number;
+  setContentIndex: (arg0: number) => void;
+}
+
+function Form({ contentIndex, setContentIndex }: FormProps) {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
-  const [contentIndex, setContentIndex] = useState<number>(2);
+  // const [contentIndex, setContentIndex] = useState<number>(2);
 
   const { formData, postFormData, resetFormData } = useData();
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(contentIndex);
-    console.log('THIS IS FORM DATA', formData);
-  });
 
   const handleSubmit = async () => {
     if (formData.password !== formData.passwordConfirm) {
@@ -41,6 +41,7 @@ function Form() {
       console.log('posted data!');
     } catch (err) {
       console.log('Error submitting data', err);
+      // set error
     } finally {
       setSubmitting(false);
       resetFormData();
