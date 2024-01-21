@@ -15,30 +15,26 @@ interface FormProps {
 
 function Form({ contentIndex, setContentIndex }: FormProps) {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
-  // const [contentIndex, setContentIndex] = useState<number>(2);
   const { validateInputs, errors } = useError();
   const { formData, postFormData, resetFormData } = useData();
-  // const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  useEffect(() => {
-    console.log('errors', errors);
-  }, [errors]);
-
   const handleSubmit = async () => {
-    validateInputs('username', formData.username);
-    validateInputs('password', formData.password);
-
-    if (Object.values(errors)) {
-      console.log('Form has errors.', errors);
+    // Primer check
+    if (
+      !formData.username ||
+      !formData.password ||
+      formData.password !== formData.passwordConfirm
+    ) {
+      validateInputs('username');
+      validateInputs('password');
       return;
     }
 
-    console.log('Submitting!');
-    setSubmitting(true);
     try {
+      console.log('Sumitting! formData', formData);
+      setSubmitting(true);
       await postFormData();
-      console.log('posted data!');
     } catch (err) {
       console.log('Error submitting data', err);
       // set error
@@ -78,6 +74,8 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
                 onButtonClick={() => {
                   if (contentIndex < 1) {
                     setContentIndex(contentIndex + 1);
+                  } else if (contentIndex >= 2) {
+                    setContentIndex(0);
                   } else {
                     handleSubmit();
                   }

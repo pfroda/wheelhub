@@ -99,7 +99,7 @@ function UserInfo() {
               />
             </div>
             <div className="info-error">
-              <p>{errors.passwordConfirm}</p>
+              <p>{errors.password}</p>
             </div>
           </div>
         </div>

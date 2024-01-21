@@ -12,3 +12,15 @@
 // .button-box {
 //   position: absolute;
 // }
+
+@media (max-width: 768px) {
+  .form-buttons {
+    flex-direction: column-reverse;
+  }
+
+  .forward-button,
+  .back-button,
+  .return-button {
+    width: 100%;
+  }
+}

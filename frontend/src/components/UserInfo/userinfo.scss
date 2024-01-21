@@ -43,3 +43,10 @@
     margin: 0;
   }
 }
+
+@media (max-width: 768px) {
+  .password-content {
+    gap: 0px;
+    flex-direction: column;
+  }
+}

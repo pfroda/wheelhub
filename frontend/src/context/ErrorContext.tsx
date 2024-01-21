@@ -10,7 +10,7 @@ interface Errors {
 interface ErrorContextType {
   errors: Errors;
   setErrors: (newErrors: Errors) => void;
-  validateInputs: (field: keyof Errors, value: string) => void;
+  validateInputs: (field: keyof Errors) => void;
 }
 
 const ErrorContext = createContext<ErrorContextType | undefined>(undefined);
@@ -31,21 +31,21 @@ function ErrorProvider({ children }: { children: React.ReactNode }) {
     return /^(?=.*\d)(?=.*[A-Z]).{8,24}$/.test(password);
   };
 
-  const validateInputs = (field: keyof Errors, value: string) => {
+  const validateInputs = async (field: keyof Errors) => {
     let error: string | undefined = undefined;
 
     switch (field) {
       case 'username':
-        if (!value) error = 'Introduce un usuario';
+        if (!formData.username) error = 'Introduce un usuario';
         break;
 
       case 'password':
-        if (!value) error = 'Introduce una contraseña';
-        if (!isValidPassword(value))
+        if (!formData.password) error = 'Introduce una contraseña';
+        if (!isValidPassword(formData.password))
           error = 'Mínimo 8 caracteres con un número y una mayúscula';
         if (
-          value &&
-          isValidPassword(value) &&
+          formData.password &&
+          isValidPassword(formData.password) &&
           formData.password != formData.passwordConfirm
         )
           error = 'Las contraseñas no coinciden';
