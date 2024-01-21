@@ -9,7 +9,7 @@ import './form.scss';
 
 function Form() {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
-  const [contentIndex, setContentIndex] = useState<number>(0);
+  const [contentIndex, setContentIndex] = useState<number>(2);
 
   const { formData, postFormData, resetFormData } = useData();
   const [error, setError] = useState<string | null>(null);

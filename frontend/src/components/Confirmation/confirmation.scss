@@ -1,0 +1,23 @@
+.Confirmation {
+  display: flex;
+  gap: 30px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.confirmation-image {
+  width: 550px;
+}
+
+@media screen and (max-width: 600px) {
+  .Confirmation {
+    gap: 0;
+    flex-direction: column;
+  }
+
+  .confirmation-image {
+    display: none;
+  }
+}
