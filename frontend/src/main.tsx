@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
+import './config/i18next.config.ts';
 import './index.scss';
 import './App.scss';
 

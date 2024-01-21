@@ -1,0 +1,6 @@
+{
+  "username": "Create a username",
+  "password": "Create a password",
+  "passwordType": "Eight characters, one number, and one uppercase",
+  "passwordMatch": "Passwords don't match"
+}

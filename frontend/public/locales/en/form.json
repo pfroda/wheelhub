@@ -1,0 +1,8 @@
+{
+  "user": "Create your username",
+  "password": "Create your password",
+  "passwordRepeat": "Type your password again",
+  "hintDescription": "You can also type a hint that will help you remember your password",
+  "hintLabel": "Create your hint",
+  "hintInput": "Type your hint"
+}

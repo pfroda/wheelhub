@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Suspense } from 'react';
 import Form from './components/Form/Form';
 import Title from './components/Title/Title';
 import DataProvider from './context/DataContext';
@@ -13,12 +14,14 @@ function App() {
     <div className="app">
       <DataProvider>
         <ErrorProvider>
-          <Bar contentIndex={contentIndex} />
-          <Title />
-          <Form
-            contentIndex={contentIndex}
-            setContentIndex={(index) => setContentIndex(index)}
-          />
+          <Suspense fallback="Loading translation...">
+            <Bar contentIndex={contentIndex} />
+            <Title />
+            <Form
+              contentIndex={contentIndex}
+              setContentIndex={(index) => setContentIndex(index)}
+            />
+          </Suspense>
         </ErrorProvider>
       </DataProvider>
     </div>

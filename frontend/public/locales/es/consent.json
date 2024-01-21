@@ -1,0 +1,7 @@
+{
+  "title": "¿Qué deberá realizar?",
+  "first": "En la primera pestaña, deberá confirmar que es mayor de edad y que acepta el tratamiento de sus datos según la política de datos vigentes.",
+  "second": "En la segunda pestaña, deberá crear un usuario, una contraseña y una pista para recordar la contraseña (como dato optional)",
+  "third": "En tercer lugar, deberá visualizarse el mensaje de éxito de creación.",
+  "checkbox": "Confirma que es mayor de edad, y acepta el tratamiento de sus datos según la política de protección de datos vigente"
+}

@@ -1,0 +1,8 @@
+{
+  "user": "Crea tu usuario",
+  "password": "Crea tu contraseña",
+  "passwordRepeat": "Repite tu contraseña",
+  "hintDescription": "También puedes crear una pista que te ayude a recordar tu contraseña.",
+  "hintLabel": "Crea tu pista para recordar tu contraseña (opcional)",
+  "hintInput": "Introduce tu pista"
+}

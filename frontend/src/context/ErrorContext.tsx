@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useData } from './DataContext';
+import { useTranslation } from 'react-i18next';
 
 interface Errors {
   username?: string;
@@ -26,6 +27,7 @@ export const useError = () => {
 function ErrorProvider({ children }: { children: React.ReactNode }) {
   const [errors, setErrors] = useState<Errors>({});
   const { formData } = useData();
+  const { t } = useTranslation(['errors']);
 
   const isValidPassword = (password: string): boolean => {
     return /^(?=.*\d)(?=.*[A-Z]).{8,24}$/.test(password);
@@ -36,19 +38,18 @@ function ErrorProvider({ children }: { children: React.ReactNode }) {
 
     switch (field) {
       case 'username':
-        if (!formData.username) error = 'Introduce un usuario';
+        if (!formData.username) error = t('username');
         break;
 
       case 'password':
-        if (!formData.password) error = 'Introduce una contraseña';
-        if (!isValidPassword(formData.password))
-          error = 'Mínimo 8 caracteres con un número y una mayúscula';
+        if (!formData.password) error = t('password');
+        if (!isValidPassword(formData.password)) error = t('passwordType');
         if (
           formData.password &&
           isValidPassword(formData.password) &&
           formData.password != formData.passwordConfirm
         )
-          error = 'Las contraseñas no coinciden';
+          error = t('passwordMatch');
         break;
 
       default:

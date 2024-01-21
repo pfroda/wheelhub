@@ -1,9 +1,11 @@
 import { useData } from '../../context/DataContext';
+import { useTranslation } from 'react-i18next';
 import logo from '../../assets/img/Logotipo-Vertical-Verde-Alta.png';
 import './consent.scss';
 
 function Consent() {
   const { updateFormData, formData } = useData();
+  const { t, i18n } = useTranslation(['consent']);
 
   return (
     <div className="Consent">
@@ -11,19 +13,10 @@ function Consent() {
         <img src={logo} alt="wheelhub-logo" className="logo" />
       </div>
       <div className="form-instructions">
-        <h4>¿Qué deberá realizar?</h4>
-        <p>
-          En la primera pestaña, deberá confirmar que es mayor de edad y que
-          acepta el tratamiento de sus datos según la política de datos
-          vigentes.
-        </p>
-        <p>
-          En la segunda pestaña, deberá crear un usuario, una contraseña y una
-          pista para recordar la contraseña (como dato optional)
-        </p>
-        <p>
-          En tercer lugar, deberá visualizarse el mensaje de éxito de creación.
-        </p>
+        <h4>{t('title')}</h4>
+        <p>{t('first')}</p>
+        <p>{t('second')}</p>
+        <p>{t('third')}</p>
         <div className="form-checkbox">
           <input
             type="checkbox"
@@ -32,8 +25,7 @@ function Consent() {
             onChange={(e) => updateFormData('consent', e.target.checked)}
           />
           <label htmlFor="consent" id="consent-label">
-            Confirma que es mayor de edad, y acepta el tratamiento de sus datos
-            según la política de protección de datos vigente
+            {t('checkbox')}
           </label>
         </div>
       </div>

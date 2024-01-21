@@ -1,0 +1,6 @@
+{
+  "username": "Introduce un usuario",
+  "password": "Introduce una contraseña",
+  "passwordType": "Mínimo 8 caracteres con un número y una mayúscula",
+  "passwordMatch": "Las contraseñas no coinciden"
+}

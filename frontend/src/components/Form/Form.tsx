@@ -1,11 +1,12 @@
 import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
 import Confirmation from '../Confirmation/Confirmation';
-import Button from '../Button/button';
-import { useEffect, useState } from 'react';
+import Button from '../Button/Button';
+import { useState } from 'react';
 import { useData } from '../../context/DataContext';
 import { useError } from '../../context/ErrorContext';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useTranslation } from 'react-i18next';
 import './form.scss';
 
 interface FormProps {
@@ -15,12 +16,15 @@ interface FormProps {
 
 function Form({ contentIndex, setContentIndex }: FormProps) {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
-  const { validateInputs, errors } = useError();
+
+  const { validateInputs } = useError();
   const { formData, postFormData, resetFormData } = useData();
   const [submitting, setSubmitting] = useState<boolean>(false);
 
+  const { t } = useTranslation(['button']);
+
   const handleSubmit = async () => {
-    // Primer check
+    // Data check
     if (
       !formData.username ||
       !formData.password ||
@@ -32,7 +36,6 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
     }
 
     try {
-      console.log('Sumitting! formData', formData);
       setSubmitting(true);
       await postFormData();
     } catch (err) {
@@ -47,14 +50,12 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
 
   return (
     <div>
-      <div className="progress"></div>
-
       <div className="form-content">{content[contentIndex]}</div>
       <div className="form-buttons">
         <div className="button-box">
           {contentIndex > 0 && (
             <Button
-              buttonText="Atrás"
+              buttonText={t('back')}
               buttonStyle="back-button"
               onButtonClick={() => setContentIndex(contentIndex - 1)}
             />
@@ -65,7 +66,7 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
           <div className="fader-box">
             {contentIndex < 2 ? (
               <Button
-                buttonText="Siguiente"
+                buttonText={t('next')}
                 buttonStyle={
                   submitting || !formData.consent
                     ? 'disabled forward-button'
@@ -84,7 +85,7 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
               />
             ) : (
               <Button
-                buttonText="Voler al inicio"
+                buttonText={t('start')}
                 buttonStyle="return-button"
                 onButtonClick={() => setContentIndex(0)}
               />

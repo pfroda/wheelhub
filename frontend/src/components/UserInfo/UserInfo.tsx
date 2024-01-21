@@ -2,13 +2,16 @@ import { useData } from '../../context/DataContext';
 import { useError } from '../../context/ErrorContext';
 import { useState } from 'react';
 import PasswordStrengthBar from 'react-password-strength-bar';
-import './userinfo.scss';
+import { useTranslation } from 'react-i18next';
 import eyeOpened from '../../assets/icons/icon_eye.svg';
 import eyeClosed from '../../assets/icons/icon_eyeclosed.svg';
+import './userinfo.scss';
 
 function UserInfo() {
   const { updateFormData, formData } = useData();
   const { errors } = useError();
+
+  const { t } = useTranslation(['form']);
 
   const [visiblePassword, setVisiblePassword] = useState<{
     [key: string]: boolean;
@@ -27,10 +30,10 @@ function UserInfo() {
   return (
     <form>
       <div className="UserInfo">
-        <label htmlFor="username">Crea tu usuario</label>
+        <label htmlFor="username">{t('user')}</label>
         <input
           type="text"
-          placeholder="Introduce tu usuario"
+          placeholder={t('user')}
           onChange={(e) => updateFormData('username', e.target.value)}
           value={formData.username}
           required
@@ -40,11 +43,11 @@ function UserInfo() {
         </div>
         <div className="password-content">
           <div className="password-box">
-            <label htmlFor="password">Crea tu contraseña</label>
+            <label htmlFor="password">{t('password')}</label>
             <div className="password-input">
               <input
                 type={visiblePassword.password ? 'text' : 'password'}
-                placeholder="Crea tu contraseña"
+                placeholder={t('password')}
                 minLength={8}
                 maxLength={24}
                 pattern="(?=.*\d)(?=.*[A-Z]).{8,24}"
@@ -71,11 +74,11 @@ function UserInfo() {
             </div>
           </div>
           <div className="password-box">
-            <label htmlFor="passwordConfirm">Repite tu contraseña</label>
+            <label htmlFor="passwordConfirm">{t('passwordRepeat')}</label>
             <div className="password-input">
               <input
                 type={visiblePassword.passwordConfirm ? 'text' : 'password'}
-                placeholder="Repite tu contraseña"
+                placeholder={t('passwordRepeat')}
                 minLength={8}
                 maxLength={24}
                 pattern="(?=.*\d)(?=.*[A-Z]).{8,24}"
@@ -98,22 +101,14 @@ function UserInfo() {
                 scoreWords={['']}
               />
             </div>
-            <div className="info-error">
-              <p>{errors.password}</p>
-            </div>
           </div>
         </div>
         <div className="hint-content password-box">
-          <p>
-            También puedes crear una pista que te ayude a recordar tu
-            contraseña.
-          </p>
-          <label htmlFor="hint">
-            Crea tu pista para recordar tu contraseña (opcional)
-          </label>
+          <p>{t('hintDescription')}</p>
+          <label htmlFor="hint">{t('hintLabel')}</label>
           <input
             type="text"
-            placeholder="Introduce tu pista"
+            placeholder={t('hintInput')}
             maxLength={60}
             onChange={(e) => updateFormData('hint', e.target.value)}
             value={formData.hint}
