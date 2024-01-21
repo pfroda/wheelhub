@@ -30,6 +30,7 @@ function UserInfo() {
           placeholder="Introduce tu usuario"
           onChange={(e) => updateFormData('username', e.target.value)}
           value={formData.username}
+          required
         />
         <div className="password-content">
           <div className="password-box">
@@ -43,6 +44,7 @@ function UserInfo() {
                 pattern="(?=.*\d)(?=.*[A-Z]).{8,24}"
                 onChange={(e) => updateFormData('password', e.target.value)}
                 value={formData.password}
+                required
               />
 
               <img
@@ -72,6 +74,7 @@ function UserInfo() {
                   updateFormData('passwordConfirm', e.target.value)
                 }
                 value={formData.passwordConfirm}
+                required
               />
               <img
                 src={visiblePassword.passwordConfirm ? eyeClosed : eyeOpened}

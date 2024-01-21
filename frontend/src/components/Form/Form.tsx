@@ -1,15 +1,18 @@
 import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
 import Confirmation from '../Confirmation/Confirmation';
+import Button from '../Button/button';
 import { useEffect, useState } from 'react';
 import { useData } from '../../context/DataContext';
-import FadeLoader from 'react-spinners/FadeLoader';
+import ClipLoader from 'react-spinners/ClipLoader';
+import './form.scss';
 
 function Form() {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
   const [contentIndex, setContentIndex] = useState<number>(0);
 
   const { formData, postFormData, resetFormData } = useData();
+  const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
@@ -51,41 +54,36 @@ function Form() {
 
       <div className="form-content">{content[contentIndex]}</div>
       <div className="form-buttons">
-        <div className="back-button">
+        <div className="button-box">
           {contentIndex > 0 && (
-            <button
-              type="button"
-              onClick={() => setContentIndex(contentIndex - 1)}
-            >
-              Atrás
-            </button>
+            <Button
+              buttonText="Atrás"
+              buttonStyle="back-button"
+              onButtonClick={() => setContentIndex(contentIndex - 1)}
+            />
           )}
         </div>
 
-        <div className="forward-button">
-          <button
-            disabled={!formData.consent || submitting}
-            type="button"
-            onClick={() => {
-              if (contentIndex < 1) {
-                setContentIndex(contentIndex + 1);
-              } else {
-                handleSubmit();
-              }
-            }}
-          >
-            Siguiente!
-          </button>
-          {submitting && (
-            <FadeLoader
-              color="green"
-              // loading={loading}
-              // cssOverride={override}
-              // size={150}
-              aria-label="Loading Spinner"
-              data-testid="loader"
+        <div className="button-box">
+          <div className="fader-box">
+            <Button
+              buttonText="Siguiente"
+              buttonStyle="forward-button"
+              onButtonClick={() => {
+                if (contentIndex < 1) {
+                  setContentIndex(contentIndex + 1);
+                } else {
+                  handleSubmit();
+                }
+              }}
+              disabled={!formData.consent || submitting}
             />
-          )}
+            {submitting && (
+              <div className="fader-loader">
+                <ClipLoader color="white" size={20} id="spinner" />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

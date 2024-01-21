@@ -38,9 +38,26 @@ button {
   height: 30px;
   border-radius: 5px;
   background-color: $green-color;
+  border: none;
   color: white;
 
   &:hover {
     cursor: pointer;
   }
+}
+
+.back-button {
+  background-color: transparent;
+  color: black;
+}
+
+.fader-box {
+  position: relative;
+  display: flex;
+}
+
+.fader-loader {
+  position: absolute;
+  right: 5px;
+  top: 2px;
 }
