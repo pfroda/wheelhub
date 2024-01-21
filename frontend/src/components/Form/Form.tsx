@@ -2,8 +2,9 @@ import Consent from '../Consent/Consent';
 import UserInfo from '../UserInfo/UserInfo';
 import Confirmation from '../Confirmation/Confirmation';
 import Button from '../Button/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useData } from '../../context/DataContext';
+import { useError } from '../../context/ErrorContext';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './form.scss';
 
@@ -15,22 +16,21 @@ interface FormProps {
 function Form({ contentIndex, setContentIndex }: FormProps) {
   const content = [<Consent />, <UserInfo />, <Confirmation />];
   // const [contentIndex, setContentIndex] = useState<number>(2);
-
+  const { validateInputs, errors } = useError();
   const { formData, postFormData, resetFormData } = useData();
   // const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState<boolean>(false);
 
+  useEffect(() => {
+    console.log('errors', errors);
+  }, [errors]);
+
   const handleSubmit = async () => {
-    if (formData.password !== formData.passwordConfirm) {
-      console.log("passwords don't match");
-      return;
-    }
+    validateInputs('username', formData.username);
+    validateInputs('password', formData.password);
 
-    if (!formData.password) {
-      return;
-    }
-
-    if (!formData.username) {
+    if (Object.values(errors)) {
+      console.log('Form has errors.', errors);
       return;
     }
 

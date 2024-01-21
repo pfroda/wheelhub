@@ -1,4 +1,5 @@
 import { useData } from '../../context/DataContext';
+import { useError } from '../../context/ErrorContext';
 import { useState } from 'react';
 import PasswordStrengthBar from 'react-password-strength-bar';
 import './userinfo.scss';
@@ -7,6 +8,8 @@ import eyeClosed from '../../assets/icons/icon_eyeclosed.svg';
 
 function UserInfo() {
   const { updateFormData, formData } = useData();
+  const { errors } = useError();
+
   const [visiblePassword, setVisiblePassword] = useState<{
     [key: string]: boolean;
   }>({
@@ -32,6 +35,9 @@ function UserInfo() {
           value={formData.username}
           required
         />
+        <div className="info-error">
+          <p>{errors.username}</p>
+        </div>
         <div className="password-content">
           <div className="password-box">
             <label htmlFor="password">Crea tu contraseña</label>
@@ -59,6 +65,9 @@ function UserInfo() {
                 shortScoreWord={['']}
                 scoreWords={['']}
               />
+            </div>
+            <div className="info-error">
+              <p>{errors.password}</p>
             </div>
           </div>
           <div className="password-box">
@@ -88,6 +97,9 @@ function UserInfo() {
                 shortScoreWord={['']}
                 scoreWords={['']}
               />
+            </div>
+            <div className="info-error">
+              <p>{errors.passwordConfirm}</p>
             </div>
           </div>
         </div>
