@@ -24,9 +24,11 @@ function Consent() {
             checked={formData.consent}
             onChange={(e) => updateFormData('consent', e.target.checked)}
           />
-          <label htmlFor="consent" id="consent-label">
-            <p> {t('checkbox')}</p>
-          </label>
+          <div className="consent-label">
+            <label htmlFor="consent" id="consent-label">
+              <p> {t('checkbox')}</p>
+            </label>
+          </div>
         </div>
       </div>
     </div>

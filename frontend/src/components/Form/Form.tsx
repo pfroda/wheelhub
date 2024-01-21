@@ -49,7 +49,7 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
   };
 
   return (
-    <div>
+    <div className="Form">
       <div className="form-content">{content[contentIndex]}</div>
       <div className="form-buttons">
         <div className="button-box">

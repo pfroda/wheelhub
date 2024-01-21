@@ -1,8 +1,9 @@
+import { Request, Response } from 'express';
 import { AppDataSource } from '../db/db';
 import { User } from '../models/User';
 import crypto from 'crypto';
 
-async function createUser(req, res) {
+async function createUser(req: Request, res: Response) {
   try {
     const user: User = req.body;
 

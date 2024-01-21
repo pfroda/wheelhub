@@ -1,15 +1,11 @@
-import express from 'express';
+import express, { Express } from 'express';
 import router from './routes/userRoutes';
 import cors from 'cors';
 import { initDb } from './db/db';
 import 'dotenv/config';
 
-const app = express();
+const app: Express = express();
 const PORT = process.env.PORT || 8080;
-
-app.get('/', (req, res) => {
-  res.send('Hello world!');
-});
 
 app.use(cors());
 
@@ -18,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-(async () => {
+(async (): Promise<void> => {
   await initDb();
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);

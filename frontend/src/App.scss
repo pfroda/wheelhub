@@ -1,14 +1,13 @@
 @import 'styles/base';
 
 .app {
-  margin: 25px;
-  max-width: 600px;
+  margin: auto;
+  max-width: 650px;
   background-color: rgb(249, 249, 160);
-  align-items: center;
-  justify-content: center;
   padding: 50px;
   border-radius: 10px;
 }
+
 p {
   color: $text-color;
   font-size: 15px;
