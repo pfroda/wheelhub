@@ -1,11 +1,11 @@
 import { useData } from '../../context/DataContext';
 import { useTranslation } from 'react-i18next';
-import logo from '../../assets/img/Logotipo-Vertical-Verde-Alta.png';
+import logo from '../../assets/img/logo_green.png';
 import './consent.scss';
 
 function Consent() {
   const { updateFormData, formData } = useData();
-  const { t, i18n } = useTranslation(['consent']);
+  const { t } = useTranslation(['consent']);
 
   return (
     <div className="Consent">
@@ -25,7 +25,7 @@ function Consent() {
             onChange={(e) => updateFormData('consent', e.target.checked)}
           />
           <label htmlFor="consent" id="consent-label">
-            {t('checkbox')}
+            <p> {t('checkbox')}</p>
           </label>
         </div>
       </div>
