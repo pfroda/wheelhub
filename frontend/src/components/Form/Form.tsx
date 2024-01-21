@@ -66,18 +66,30 @@ function Form() {
 
         <div className="button-box">
           <div className="fader-box">
-            <Button
-              buttonText="Siguiente"
-              buttonStyle="forward-button"
-              onButtonClick={() => {
-                if (contentIndex < 1) {
-                  setContentIndex(contentIndex + 1);
-                } else {
-                  handleSubmit();
+            {contentIndex < 2 ? (
+              <Button
+                buttonText="Siguiente"
+                buttonStyle={
+                  submitting || !formData.consent
+                    ? 'disabled forward-button'
+                    : 'forward-button'
                 }
-              }}
-              disabled={!formData.consent || submitting}
-            />
+                onButtonClick={() => {
+                  if (contentIndex < 1) {
+                    setContentIndex(contentIndex + 1);
+                  } else {
+                    handleSubmit();
+                  }
+                }}
+                disabled={!formData.consent || submitting}
+              />
+            ) : (
+              <Button
+                buttonText="Voler al inicio"
+                buttonStyle="return-button"
+                onButtonClick={() => setContentIndex(0)}
+              />
+            )}
             {submitting && (
               <div className="fader-loader">
                 <ClipLoader color="white" size={20} id="spinner" />

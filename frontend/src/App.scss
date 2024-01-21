@@ -51,6 +51,12 @@ button {
   color: black;
 }
 
+.return-button {
+  background-color: transparent;
+  color: black;
+  font-weight: 600;
+}
+
 .fader-box {
   position: relative;
   display: flex;
@@ -60,4 +66,9 @@ button {
   position: absolute;
   right: 5px;
   top: 2px;
+}
+
+.disabled {
+  background-color: rgba(0, 128, 0, 0.47) !important;
+  cursor: not-allowed !important;
 }
