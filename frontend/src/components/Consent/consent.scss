@@ -27,6 +27,7 @@
 
     &:checked {
       background-color: $light-green-color;
+      border: 1px solid $step-color;
       box-shadow: 0 0 0 2px white inset;
     }
 

@@ -28,7 +28,7 @@ input {
   height: 25px;
   text-indent: 10px;
   &:focus {
-    border-color: green;
+    border-color: $light-green-color;
   }
 }
 
@@ -68,12 +68,12 @@ button {
 }
 
 .disabled {
-  background-color: rgba(0, 128, 0, 0.329) !important;
+  background-color: $light-green-color;
   cursor: not-allowed !important;
 }
 
 .info-error p {
   font-size: 10px;
   margin-top: 2px;
-  color: red;
+  color: rgb(247, 81, 81);
 }
