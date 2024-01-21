@@ -1,18 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 import { useData } from './DataContext';
 import { useTranslation } from 'react-i18next';
-
-interface Errors {
-  username?: string;
-  password?: string;
-  passwordConfirm?: string;
-}
-
-interface ErrorContextType {
-  errors: Errors;
-  setErrors: (newErrors: Errors) => void;
-  validateInputs: (field: keyof Errors) => void;
-}
+import { ErrorContextType, ErrorData } from '../interfaces/Interfaces';
 
 const ErrorContext = createContext<ErrorContextType | undefined>(undefined);
 
@@ -25,7 +14,7 @@ export const useError = () => {
 };
 
 function ErrorProvider({ children }: { children: React.ReactNode }) {
-  const [errors, setErrors] = useState<Errors>({});
+  const [errors, setErrors] = useState<ErrorData>({});
   const { formData } = useData();
   const { t } = useTranslation(['errors']);
 
@@ -33,7 +22,7 @@ function ErrorProvider({ children }: { children: React.ReactNode }) {
     return /^(?=.*\d)(?=.*[A-Z]).{8,24}$/.test(password);
   };
 
-  const validateInputs = async (field: keyof Errors) => {
+  const validateInputs = async (field: keyof ErrorData) => {
     let error: string | undefined = undefined;
 
     switch (field) {

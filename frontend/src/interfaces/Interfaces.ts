@@ -12,3 +12,15 @@ export interface UserData {
   passwordConfirm: string;
   hint: string;
 }
+
+export interface ErrorContextType {
+  errors: ErrorData;
+  setErrors: (newErrors: ErrorData) => void;
+  validateInputs: (field: keyof ErrorData) => void;
+}
+
+export interface ErrorData {
+  username?: string;
+  password?: string;
+  passwordConfirm?: string;
+}
