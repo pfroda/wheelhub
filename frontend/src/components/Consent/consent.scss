@@ -29,6 +29,11 @@
       background-color: $light-green-color;
       box-shadow: 0 0 0 2px white inset;
     }
+
+    @media (max-width: 757px) {
+      // width: px;
+      // height: 16px;
+    }
   }
 }
 
@@ -37,5 +42,6 @@
   color: $text-color;
   p {
     font-size: 12px;
+    margin: 0;
   }
 }

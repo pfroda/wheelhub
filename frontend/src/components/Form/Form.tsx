@@ -87,7 +87,7 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
               <Button
                 buttonText={t('start')}
                 buttonStyle="return-button"
-                onButtonClick={() => setContentIndex(0)}
+                onButtonClick={() => window.location.reload()}
               />
             )}
             {submitting && (
