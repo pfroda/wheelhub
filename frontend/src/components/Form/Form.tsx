@@ -20,6 +20,7 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
   const { validateInputs } = useError();
   const { formData, postFormData, resetFormData } = useData();
   const [submitting, setSubmitting] = useState<boolean>(false);
+  const [postError, setPostError] = useState<Error | null>(null);
 
   const { t } = useTranslation(['button']);
 
@@ -38,9 +39,10 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
     try {
       setSubmitting(true);
       await postFormData();
+      setPostError(null);
     } catch (err) {
       console.log('Error submitting data', err);
-      // set error
+      setPostError(err instanceof Error ? err : new Error(String(err)));
     } finally {
       setSubmitting(false);
       resetFormData();
@@ -93,6 +95,11 @@ function Form({ contentIndex, setContentIndex }: FormProps) {
             {submitting && (
               <div className="fader-loader">
                 <ClipLoader color="white" size={20} id="spinner" />
+              </div>
+            )}
+            {postError && (
+              <div className="post-error">
+                <p>{postError.message}</p>
               </div>
             )}
           </div>
